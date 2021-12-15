@@ -1,7 +1,12 @@
 {
   "name": "ui",
   "version": "1.0.0",
-  "main": "./Button.tsx",
-  "types": "./Button.tsx",
-  "license": "MIT"
+  "main": "./UiButton.tsx",
+  "types": "./UiButton.tsx",
+  "license": "MIT",
+  "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.2.4"
+  }
 }
