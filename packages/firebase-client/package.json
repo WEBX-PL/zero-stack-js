@@ -1,0 +1,10 @@
+{
+  "name": "firebase-client",
+  "version": "1.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "firebase": "^9.6.1"
+  }
+}
