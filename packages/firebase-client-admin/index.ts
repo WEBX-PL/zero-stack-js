@@ -1,6 +1,6 @@
 const { initializeApp, cert, getApps } = require("firebase-admin/app");
 // const { getRemoteConfig } = require("firebase/remote-config");
-const { getFirestore } = require("firebase-admin/firestore");
+const { getFirestore, Timestamp } = require("firebase-admin/firestore");
 // const {
 //   initializeAppCheck,
 //   ReCaptchaV3Provider,
@@ -31,4 +31,27 @@ const admin =
 
 const db = getFirestore(admin);
 
-export { admin, db };
+const converter = {
+  toFirestore: (data) => {
+    Object.keys(data).forEach((key) => {
+      if (typeof data[key].getMonth === "function") {
+        data[key] = Timestamp.fromDate(data[key]);
+      }
+    });
+    return data;
+  },
+  fromFirestore: (snapshot) => {
+    const data = snapshot.data();
+    Object.keys(data).forEach((key) => {
+      if (
+        typeof data[key].toDate == "function" &&
+        typeof data[key].seconds == "number"
+      ) {
+        data[key] = data[key].toDate().toString();
+      }
+    });
+    return data;
+  },
+};
+
+export { admin, db, converter };
